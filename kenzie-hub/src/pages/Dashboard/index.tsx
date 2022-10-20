@@ -48,8 +48,8 @@ export default function Dashboard() {
         <div className="user_container">
           <div className="div_user_container">
             
-            <h2>Ola, {userGet!.name}</h2>
-            <span>{userGet!.course_module}</span>
+            <h2>Ola, {userGet?.name}</h2>
+            <span>{userGet?.course_module}</span>
           </div>
         </div>
       </header>
@@ -62,7 +62,7 @@ export default function Dashboard() {
           </button>
         </div>
         <div className="div_tech_container">
-          {userGet!.techs.length ? (
+          {userGet?.techs.length ? (
             <ul>
               <TechCard/>
             </ul>

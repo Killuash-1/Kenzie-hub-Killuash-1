@@ -50,9 +50,9 @@ const Autentication = ({ children }: iAutentication) => {
 
       const navegateTo = location.state?.from?.pathname || "Dashboard";
       navigate(navegateTo, { replace: true });
-    } catch (error) {
+    } catch (_) {
       LoginToastError();
-      console.error(error);
+      
     }
   };
 
@@ -75,9 +75,9 @@ const Autentication = ({ children }: iAutentication) => {
           setUserGet(user);
 
           navigate("/Dashboard", { replace: true });
-        } catch (error) {
-          console.error(error);
-        }
+        } catch (_) { }
+          
+      
       }
       setLoad(false);
     };
@@ -95,8 +95,8 @@ const Autentication = ({ children }: iAutentication) => {
       TechToast();
       updateTechs();
       toggleModal();
-    } catch (error) {
-      console.log(error);
+    } catch (_) {
+      
       TechToastError();
     }
   };
@@ -106,9 +106,7 @@ const Autentication = ({ children }: iAutentication) => {
       const res = await Api.delete(`/users/techs/${tech_id}`);
       DeleteTechToast();
       updateTechs();
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (_) {}
   };
 
   return (

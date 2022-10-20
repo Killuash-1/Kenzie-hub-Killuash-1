@@ -14,7 +14,7 @@ export default function TechCard(){
  
   return (
     <>
-      {userGet!.techs.map(({ id, title, status }) => (
+      {userGet?.techs.map(({ id, title, status }) => (
         <StyledLi key={id}>
           <h3>{title}</h3>
           <div>
