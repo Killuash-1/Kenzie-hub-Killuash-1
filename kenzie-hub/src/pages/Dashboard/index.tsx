@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { Toaster } from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/img/Logo.svg";
 import Container from "../../components/Container/style";
 import ModalBody from "../../components/modal";
@@ -11,28 +11,25 @@ import { DivDashBoard } from "./style";
 
   
 export default function Dashboard() {
+  
   const { userGet } = useContext(Authorization);
   const { toggleModal, modal } = useContext(ModalContext);
-  console.log(userGet)
-  
-  
-  
-  
+
   const nav = useNavigate();
 
   const logOut = () => {
     localStorage.clear();
     nav("/");
   };
-
+  
   return (
     <DivDashBoard>
       <Toaster />
-      {modal && (
+      {modal ?(
         <Container modalBG>
           <ModalBody />
         </Container>
-      )}
+      ): null}
 
       <nav>
         <div className="div_img_container">

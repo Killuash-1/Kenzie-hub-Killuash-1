@@ -9,7 +9,7 @@ export default function TechCard(){
   
   const { deleteTech , userGet} = useContext(Authorization);
 
- console.log(userGet);
+ 
  
  
   return (

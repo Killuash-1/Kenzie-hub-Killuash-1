@@ -82,7 +82,10 @@ const Autentication = ({ children }: iAutentication) => {
       setLoad(false);
     };
 
-    loadUser();
+    
+    return (()=>{
+      loadUser();
+    })
   }, []);
 
   const registerTechs = async (data: iUserTechPost) => {
