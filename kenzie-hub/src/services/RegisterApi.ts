@@ -13,7 +13,7 @@ export interface iRegisterApi{
 
 export async function RegisterApi(data: iRegisterApi){
 
-     const res = await Api.post("/users", data);
+    await Api.post("/users", data);
     
 }
 

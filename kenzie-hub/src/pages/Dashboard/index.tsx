@@ -1,19 +1,20 @@
 import { useContext } from "react";
 import { Toaster } from "react-hot-toast";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import logo from "../../assets/img/Logo.svg";
 import Container from "../../components/Container/style";
-import ModalBody from "../../components/modal";
 import TechCard from "../../components/TechCard";
 import { Authorization } from "../../context/Authorization";
 import { ModalContext } from "../../context/ModalContext";
 import { DivDashBoard } from "./style";
+import { ModalCreate } from "../../components/modal/ModalCreate";
+import { ModalUpdate } from "../../components/modal/ModalUpdate";
 
   
 export default function Dashboard() {
   
   const { userGet } = useContext(Authorization);
-  const { toggleModal, modal } = useContext(ModalContext);
+  const { toggleModal, modal, updateModal} = useContext(ModalContext);
 
   const nav = useNavigate();
 
@@ -25,11 +26,15 @@ export default function Dashboard() {
   return (
     <DivDashBoard>
       <Toaster />
-      {modal ?(
+      {modal &&(
         <Container modalBG>
-          <ModalBody />
+         <ModalCreate/>
         </Container>
-      ): null}
+      )}
+
+      {updateModal &&(
+        <ModalUpdate/>
+      )}
 
       <nav>
         <div className="div_img_container">

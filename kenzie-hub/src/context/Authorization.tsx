@@ -11,6 +11,7 @@ import {
   TechToastError,
 } from "../toast";
 import { ModalContext } from "./ModalContext";
+import { UserTechUpdatePost } from '../services/UserTechUpdatePost';
 
 interface iAutentication{
  children: React.ReactNode
@@ -22,6 +23,7 @@ interface iAuthorization{
   loginUser: (data: iLoginApiObject) => Promise<void>;
   load: boolean
   registerTechs: (data: iUserTechPost) => Promise<void>
+  updateTech: (id: string, data: Partial<iUserTechPost>) => Promise<void>
   deleteTech: (data: string) => Promise<void>
 }
 
@@ -33,7 +35,7 @@ const Autentication = ({ children }: iAutentication) => {
   const navigate = useNavigate();
   const [userGet, setUserGet] = useState<iUser|null>(null);
   const [load, setLoad] = useState<boolean>(true);
-  const { toggleModal } = useContext(ModalContext);
+  const { toggleModal, toggleUpdateModal } = useContext(ModalContext);
 
   const loginUser = async (data: iLoginApiObject) => {
 
@@ -60,6 +62,14 @@ const Autentication = ({ children }: iAutentication) => {
     const user = await UserGet()
     setUserGet(user);
   };
+
+const updateTech = async (id: string, data: Partial<iUserTechPost>) => {
+try {
+  await UserTechUpdatePost(id, data);
+  updateTechs();
+  toggleUpdateModal();
+} catch (_) {}
+  }
 
   useEffect(() => {
     const loadUser = async () => {
@@ -114,7 +124,7 @@ const Autentication = ({ children }: iAutentication) => {
 
   return (
     <Authorization.Provider
-      value={{ loginUser, userGet, load, registerTechs, deleteTech }}
+      value={{ loginUser, userGet, load, registerTechs, updateTech, deleteTech }}
     >
       {children}
     </Authorization.Provider>

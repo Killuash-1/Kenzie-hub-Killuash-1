@@ -7,6 +7,6 @@ export interface iUserTechPost{
 }
 
 export async function UserTechPost(data: iUserTechPost ) {
-    const res = await Api.post("/users/techs", data);
+    await Api.post("/users/techs", data);
 }
 
